@@ -1,0 +1,60 @@
+﻿<Window x:Class="抖音采集.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:抖音采集"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="抖音视频无水印下载 from 吾爱破解 52pojie.cn" Height="600" Width="800" Icon="/douyinVideo.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="237*"/>
+            <ColumnDefinition Width="563*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="IdsTextBox" HorizontalAlignment="Left" Margin="10,76,0,0" Text="" VerticalScrollBarVisibility="Auto" MaxHeight="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" KeyDown="textBox_keyDown"/>
+        <Button Content="解析视频下载地址" HorizontalAlignment="Left" Margin="234,73,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click" Height="20" Grid.ColumnSpan="2"/>
+        <Label Content="作品ID: (可换行，一行一个)" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+        <Button Content="什么是作品ID?" HorizontalAlignment="Left" Margin="234,52,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="10,33,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" MaxHeight="20"/>
+        <Label Content="通过分享链接获取作品ID:" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" />
+        <Button Content="获取作品ID" HorizontalAlignment="Left" Height="20" Margin="234,30,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_2" Grid.ColumnSpan="2"/>
+        <ListView x:Name="listView" Margin="0,211,0,0" Grid.ColumnSpan="2">
+            <ListView.DataContext>
+                <local:ListViewItem/>
+            </ListView.DataContext>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="封面" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image  Source ="{Binding Path=CoverImage}"  Height="48"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="作品ID" Width="100" DisplayMemberBinding="{Binding Path=Id}"/>
+                    <GridViewColumn Header="作品介绍" Width="150" DisplayMemberBinding="{Binding Path=Desc}"/>
+                    <GridViewColumn Header="喜欢数" Width="50" DisplayMemberBinding="{Binding Path=Like}"/>
+                    <GridViewColumn Header="作者" Width="100" DisplayMemberBinding="{Binding Path=Author}"/>
+                    <GridViewColumn Header="下载地址" Width="200" DisplayMemberBinding="{Binding Path=DownloadLink}"/>
+                    <GridViewColumn Header="操作" Width="110" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Width="60" Content="复制链接" Click="Button_Click_Copy" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" />
+                                    <Button Width="30" Content="移除" Click="Button_Click_Remove" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="65,0,0,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="复制所有下载地址" HorizontalAlignment="Left" Margin="234,138,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_4" Grid.ColumnSpan="2"/>
+        <Button Content="清空列表" HorizontalAlignment="Left" Margin="234,162,0,0" VerticalAlignment="Top" Click="Button_Click_3" Width="118" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="LogCat" HorizontalAlignment="Left" Margin="132,30,0,0" Text="" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="412" Height="176" Grid.Column="1"/>
+        <Label Content="日志" HorizontalAlignment="Left" Margin="132,5,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="关于" HorizontalAlignment="Left" Margin="234,114,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_5" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="listCount" Text="列表共有 0 项" HorizontalAlignment="Left" TextAlignment="Center" Margin="234,186,0,0" VerticalAlignment="Top" Width="118" Height="20" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
